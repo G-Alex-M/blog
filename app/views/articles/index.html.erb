@@ -1,35 +1,15 @@
 <h1>Articles</h1>
 
-<u1>
-    <% @articles.each do |article| %>
-        <li>
-            <%= link_to article.title, article %>
-        </li>
+Our blog has <%= Article.public_count %> articles and counting!
+
+<ul>
+  <% @articles.each do |article| %>
+    <% unless article.archived? %>
+      <li>
+        <%= link_to article.title, article %>
+      </li>
     <% end %>
-</u1>
+  <% end %>
+</ul>
 
 <%= link_to "New Article", new_article_path %>
-
-<!--
-mixture of html and erb
-erb evaluates ruby code embedded in a document
-two tags
-    <% %>
-    - evaluate the enclosed Ruby code 
-    <%= %>
-    - evaluate the enclosed Ruby code AND outout the value it returns 
-  
-    Anything that can be written can go inside these tags, but it's best
-    to avoid doing that for readability
-
-1. Browswer makes request
-    GET http://localhost:3000
-2. Rails app receives request
-3. Rails router maps the root route to index action of ArticlesController
-4. The index action uses Article model to fetch all articles in the database
-5. Rails automatically renders the app/views/articles/index.html.erb view
-6. The ERB code in the view is evaluated to output HTML
-7. The server sends a response containing the HTML back to the browser
-
--->
-
