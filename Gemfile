@@ -73,3 +73,4 @@ end
 
 gem 'sass-rails'
 gem 'thin'
+gem 'pg'
